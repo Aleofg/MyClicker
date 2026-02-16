@@ -1,0 +1,47 @@
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Media; 
+
+namespace MyClicker.Views;
+
+public partial class MainWindow : Window
+{
+    private int count = 0;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+
+    private void OnButtonClick(object sender, RoutedEventArgs e)
+    {
+        count++;
+        UpdateUI();
+    }
+
+    private void OnResetClick(object sender, RoutedEventArgs e)
+    {
+        count = 0;
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        
+        CounterDisplay.Text = count.ToString();
+
+        
+        if (count < 10)
+        {
+            CounterDisplay.Foreground = Brushes.Green;
+        }
+        else if (count >= 10 && count <= 20)
+        {
+            CounterDisplay.Foreground = Brushes.Orange;
+        }
+        else // если больше 20
+        {
+            CounterDisplay.Foreground = Brushes.Red;
+        }
+    }
+}
